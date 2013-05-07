@@ -91,4 +91,73 @@ describe("ngBooleanRadio", function () {
         expect(element.find('input').eq(0).prop('checked')).toBe(false);
         expect(element.find('input').eq(1).prop('checked')).toBe(true);
     });
+
+    it("should flag the form as invalid if no option is checked", function () {
+        var element = $compile('<form name="myForm">' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="true" ng-required="true" ng-boolean-radio />' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="false" ng-required="true" ng-boolean-radio />' +
+                               '</form>')($rootScope);
+        $rootScope.$apply();
+
+        expect($rootScope.myForm.$invalid).toBe(true);
+        expect($rootScope.myForm.$error.required.length).toBe(2);
+        expect($rootScope.myForm.$error.required).toEqual([
+            element.find('input').eq(0).controller("ngModel"),
+            element.find('input').eq(1).controller("ngModel")
+        ]);
+    });
+
+    it("should validate the form if the string 'true' value is selected from the view", function () {
+        var element = $compile('<form name="myForm">' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="true" ng-required="true" ng-boolean-radio />' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="false" ng-required="true" ng-boolean-radio />' +
+                               '</form>')($rootScope);
+        $rootScope.$apply();
+
+        element.find('input').eq(0).controller("ngModel").$setViewValue("true");
+        $rootScope.$apply();
+
+        expect($rootScope.myForm.$valid).toBe(true);
+    });
+
+    it("should validate the form if the string 'false' value is selected form the view", function () {
+        var element = $compile('<form name="myForm">' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="true" ng-required="true" ng-boolean-radio />' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="false" ng-required="true" ng-boolean-radio />' +
+                               '</form>')($rootScope);
+
+        $rootScope.$apply();
+
+        element.find('input').eq(0).controller("ngModel").$setViewValue("false");
+        $rootScope.$apply();
+
+        expect($rootScope.myForm.$valid).toBe(true);
+    });
+
+    it("should validate the form if the model value is set to boolean 'true'", function () {
+        var element = $compile('<form name="myForm">' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="true" ng-required="true" ng-boolean-radio />' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="false" ng-required="true" ng-boolean-radio />' +
+                               '</form>')($rootScope);
+        $rootScope.$apply();
+
+        $rootScope.myModel = true;
+        $rootScope.$apply();
+
+        expect($rootScope.myForm.$valid).toBe(true);
+    });
+
+    it("should validate the form if the model value is set to boolean 'false'", function () {
+        var element = $compile('<form name="myForm">' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="true" ng-required="true" ng-boolean-radio />' +
+                                    '<input name="myModel" ng-model="myModel" type="radio" value="false" ng-required="true" ng-boolean-radio />' +
+                               '</form>')($rootScope);
+
+        $rootScope.$apply();
+
+        $rootScope.myModel = false;
+        $rootScope.$apply();
+
+        expect($rootScope.myForm.$valid).toBe(true);
+    });
 });
