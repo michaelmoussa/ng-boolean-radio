@@ -55,4 +55,40 @@ describe("ngBooleanRadio", function () {
 
         expect(ngModel.$modelValue).toBe(false);
     });
+
+    it("should not check either radio input by default if model value is undefined", function () {
+        var element = $compile('<div>' +
+                                    '<input ng-model="myModel" type="radio" value="true" ng-boolean-radio />' +
+                                    '<input ng-model="myModel" type="radio" value="false" ng-boolean-radio />' +
+                               '</div>')($rootScope);
+
+        expect(element.find('input').eq(0).prop('checked')).toBe(false);
+        expect(element.find('input').eq(1).prop('checked')).toBe(false);
+    });
+
+    it("should check the string 'true' input by default if model value is true", function () {
+        var element = $compile('<div>' +
+                                    '<input ng-model="myModel" type="radio" value="true" ng-boolean-radio />' +
+                                    '<input ng-model="myModel" type="radio" value="false" ng-boolean-radio />' +
+                               '</div>')($rootScope);
+
+        $rootScope.myModel = true;
+        $rootScope.$apply();
+
+        expect(element.find('input').eq(0).prop('checked')).toBe(true);
+        expect(element.find('input').eq(1).prop('checked')).toBe(false);
+    });
+
+    it("should check the string 'false' input by default if model value is false", function () {
+        var element = $compile('<div>' +
+                                    '<input ng-model="myModel" type="radio" value="true" ng-boolean-radio />' +
+                                    '<input ng-model="myModel" type="radio" value="false" ng-boolean-radio />' +
+                               '</div>')($rootScope);
+
+        $rootScope.myModel = false;
+        $rootScope.$apply();
+
+        expect(element.find('input').eq(0).prop('checked')).toBe(false);
+        expect(element.find('input').eq(1).prop('checked')).toBe(true);
+    });
 });
