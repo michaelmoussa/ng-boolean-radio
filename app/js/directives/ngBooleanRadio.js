@@ -24,6 +24,27 @@ var ngBooleanRadio = function () {
                     return undefined;
                 }
             });
+
+            /**
+             * Map string "true" / "false" to boolean true / false, respectively.
+             *
+             * @return {boolean} true if viewValue is "true", false if viewValue
+             *                  is "false", undefined otherwise.
+             */
+            ngModelController.$parsers.push(function (viewValue) {
+                if (viewValue === "true")
+                {
+                    return true;
+                }
+                else if (viewValue === "false")
+                {
+                    return false;
+                }
+                else
+                {
+                    return undefined;
+                }
+            });
         }
     };
 };

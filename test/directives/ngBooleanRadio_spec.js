@@ -35,4 +35,24 @@ describe("ngBooleanRadio", function () {
 
         expect(element.controller("ngModel").$viewValue).toBeUndefined();
     });
+
+    it("should set the model value to boolean 'true' when the view value is set to string 'true'", function () {
+        var element = $compile('<input ng-model="myModel" type="radio" ng-boolean-radio />')($rootScope);
+        var ngModel = element.controller("ngModel");
+
+        ngModel.$setViewValue("true");
+        $rootScope.$apply();
+
+        expect(ngModel.$modelValue).toBe(true);
+    });
+
+    it("should set the model value to boolean 'false' when the view value is set to string 'false'", function () {
+        var element = $compile('<input ng-model="myModel" type="radio" ng-boolean-radio />')($rootScope);
+        var ngModel = element.controller("ngModel");
+
+        ngModel.$setViewValue("false");
+        $rootScope.$apply();
+
+        expect(ngModel.$modelValue).toBe(false);
+    });
 });
