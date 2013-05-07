@@ -1,0 +1,14 @@
+{
+    "author":      "Michael Moussa",
+    "name":        "ng-boolean-radio",
+    "description": "An AngularJS directive to work around but where radio inputs with boolean value 'false' are incorrectly flagged 'invalid' when using ng-required.",
+    "version":     "0.0.1",
+    "repository":  {
+        "type": "git",
+        "url":  "git://github.com/michaelmoussa/ng-boolean-radio.git"
+    },
+    "dependencies": {
+        "angular":       "1.0.6",
+        "angular-mocks": "1.0.6"
+    }
+}
