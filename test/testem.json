@@ -1,0 +1,10 @@
+{
+    "framework": "jasmine",
+    "src_files": [
+        "components/angular/angular.js",
+        "components/angular-mocks/angular-mocks.js",
+        "app/js/directives/ngBooleanRadio.js",
+        "app/js/app.js",
+        "test/directives/ngBooleanRadio_spec.js"
+    ]
+}
