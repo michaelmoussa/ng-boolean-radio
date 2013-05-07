@@ -1,3 +1,8 @@
+/**
+ * Handles boolean true / false => string "true" / "false" (and back again)
+ * conversion between the model and view for proper behavior of boolean
+ * radio inputs.
+ */
 var ngBooleanRadio = function () {
     "use strict";
 
