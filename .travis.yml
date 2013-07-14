@@ -3,6 +3,8 @@ node_js:
     - 0.10
 
 before_script:
+    - "npm install bower"
+    - "bower install"
     - "npm install testem"
 
 script:
