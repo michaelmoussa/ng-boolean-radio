@@ -8,4 +8,4 @@ before_script:
     - "npm install testem"
 
 script:
-    - "testem ci --file test/testem.json --launch phantomjs"
+    - "testem ci --launch phantomjs"
