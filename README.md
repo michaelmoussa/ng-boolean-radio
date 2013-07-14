@@ -1,5 +1,4 @@
-ng-boolean-radio
-================
+[![Build Status](https://travis-ci.org/michaelmoussa/ng-boolean-radio.png?branch=master)](https://travis-ci.org/michaelmoussa/ng-boolean-radio)
 
 An AngularJS directive to work around bug where radio inputs with boolean value 'false' are incorrectly flagged 'invalid' when using ng-required.
 
